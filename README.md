@@ -1,0 +1,3 @@
+Première version de mon code
+g++ ne voulant pas compiler mon code sans donner de message d'erreur, celui-ci ne fonctionne pas pour le moment...
+Quand j'aurai résolu le bug, je reprendrais mon code pour l'étoffer
