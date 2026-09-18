@@ -1,4 +1,9 @@
-#include "SFML\Graphics.hpp"
+/*
+Script de test pour vérifier que SFML fonctionne
+*/
+
+
+#include <SFML/Graphics.hpp>
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Hello SFML");
     sf::CircleShape shape(100.f);
