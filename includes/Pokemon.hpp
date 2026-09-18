@@ -18,10 +18,10 @@ private:
     double attack = 0;
     double defense = 0;
 public:
+    ~Pokemon();
     Pokemon() = delete;
     Pokemon(int id, const string& name, int generation, double hitPointMax, double hitPoint, double attack, double defense);
     Pokemon(const Pokemon& anotherPokemon);
-    ~Pokemon();
     void DisplayInfo() const;
     int GetID();
     string GetName();
