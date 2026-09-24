@@ -5,5 +5,5 @@
 
 class WildEncounterState : public AbstractState {
     public : 
-        void WildEncounterState::run(GameEngine& engine) override;  
+        void run(GameEngine& engine) override;  
 };

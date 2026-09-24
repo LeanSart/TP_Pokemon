@@ -8,5 +8,5 @@ Etat de bataille contre un adversaire
 */
 class BattleState : public AbstractState {
     public : 
-        void BattleState::run(GameEngine& engine) override;  
+        void run(GameEngine& engine) override;  
 };

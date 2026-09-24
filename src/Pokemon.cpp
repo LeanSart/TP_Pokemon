@@ -13,7 +13,7 @@ int Pokemon::GetID(){
     return id;
 }
 
-string Pokemon::GetName(){
+string Pokemon::GetName() const{
     return name;
 }
 

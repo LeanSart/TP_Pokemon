@@ -24,7 +24,7 @@ public:
     Pokemon(const Pokemon& anotherPokemon);
     void DisplayInfo() const;
     int GetID();
-    string GetName();
+    string GetName() const;
     int GetGeneration();
     double GetHitPointMax();
     double GetHitPoint();

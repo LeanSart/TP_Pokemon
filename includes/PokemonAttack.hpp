@@ -1,5 +1,6 @@
 #pragma once
 #include "PokemonVector.hpp"
+#include <algorithm>
 
 /*
 Classe PokemonAttack héritée de PokemonVector : 

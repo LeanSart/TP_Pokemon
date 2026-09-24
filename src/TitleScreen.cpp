@@ -13,7 +13,7 @@ void TitleScreen::run(GameEngine& engine){
     std::getline(std::cin, dummy);
 
     std::cout << "\nBienvenue dans Pokemon !" << std::endl;
-    std::cout << "Le Professeur Chen vous attend dans son laboratoire à Cergy." << std::endl;
+    std::cout << "Le Professeur Chen vous attend dans son laboratoire a Cergy." << std::endl;
     std::cout << "Il est temps de choisir votre premier partenaire :\n" << std::endl;
     std::cout << "1. " << Starter1.GetName() << std::endl;
     std::cout << "2. " << Starter2.GetName() << std::endl;

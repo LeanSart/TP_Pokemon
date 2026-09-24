@@ -5,7 +5,7 @@
 /*
 Etat de visualisation et de modification de son équipe pour combattre
 */
-class PokemonAttackViewver : AbstractState {
+class PokemonAttackViewver : public AbstractState {
     public :
-        void PokemonAttackViewver::run(GameEngine &engine) override;
+        void run(GameEngine &engine) override;
 };

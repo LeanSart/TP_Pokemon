@@ -16,5 +16,10 @@ class PokemonVector {
     public :
         virtual Pokemon GetPokemon(int indice) = 0;
         virtual Pokemon GetPokemon(const string& Name) = 0;
+        int size() const {
+            return PokeSet.size();
+        }
+        auto begin() { return PokeSet.begin(); }
+        auto end() { return PokeSet.end(); }
         virtual ~PokemonVector() = default;
 };

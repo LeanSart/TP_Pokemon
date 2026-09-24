@@ -5,7 +5,7 @@ void PokemonAttack::addPokemon(const Pokemon& pokemon){
 }
 
 void PokemonAttack::removePokemon(const Pokemon& pokemon){
-    PokeSet.pop_back(std::make_shared<Pokemon>(pokemon));
+    PokeSet.erase(std::remove_if(PokeSet.begin(), PokeSet.end(), [&pokemon](const std::shared_ptr<Pokemon>& p) {return p && (p->GetName() == pokemon.GetName()); }), PokeSet.end());
 }
 
 Pokemon PokemonAttack::GetPokemon(int indice){

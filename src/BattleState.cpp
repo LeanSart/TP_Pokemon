@@ -1,13 +1,14 @@
 #include <random>
 #include "BattleState.hpp"
 #include "GameEngine.hpp"
+#include "Pokedex.hpp"
 
 void BattleState::run(GameEngine &engine){
     std::cout << "Vous rencontrez Red" << std::endl;
     std::cout << "1. Attaquer" << std::endl;
     std::cout << "2. Quitter le jeu" << std::endl;
 
-    int playerchoice = choice(1, 4);
+    int playerchoice = choice(1, 2);
     if (playerchoice == 1){
         int randint = engine.random();
         if (randint <= 5){
@@ -15,34 +16,36 @@ void BattleState::run(GameEngine &engine){
         }
         else {
             PokemonAttack &ListPokemonAttack = engine.getAttack();
-            for(Pokemon p : ListPokemonAttack){
-                if (p.GetHitPoint() != 0) {
+            std::shared_ptr<Pokemon> fighter = nullptr;
+            std::shared_ptr<Pokemon> WildPokemon = std::make_shared<Pokemon>(Pokedex::getPokedex().GetPokemon(int(engine.random())));
+            for(auto& p : ListPokemonAttack){
+                if (p->GetHitPoint() != 0) {
                     fighter = p;
                     break;
                 }
             }
-            while (fighter.GetHitPoint() != 0 && WildPokemon.GetHitPoint() != 0){
+            while (fighter->GetHitPoint() != 0 && WildPokemon->GetHitPoint() != 0){
                 int randint_attack = engine.random();
                 if (randint_attack <= 15){
-                std::cout << WildPokemon.GetName() << "a feinte l'attaque..." << std::endl;
+                std::cout << WildPokemon->GetName() << "a feinte l'attaque..." << std::endl;
                 }
                 else {
-                    fighter.isattacking(WildPokemon);
+                    fighter->isattacking(*WildPokemon);
                 }
                 int randint_defense = engine.random();
                 if (randint_defense <= 15){
-                std::cout << fighter.GetName() << "a feinte l'attaque..." << std::endl;
+                std::cout << fighter->GetName() << "a feinte l'attaque..." << std::endl;
                 }
                 else {
-                    WildPokemon.isattacking(fighter);
+                    WildPokemon->isattacking(*fighter);
                 }
             }
-            if (fighter.GetHitPoint() == 0){
-                std::cout << fighter.GetName() << "a ete vaincu..." << std::endl;
+            if (fighter->GetHitPoint() == 0){
+                std::cout << fighter->GetName() << "a ete vaincu..." << std::endl;
                 engine.changeState(std::make_unique<GameOverState>());
             }
-            else if (WildPokemon.GetHitPoint() == 0){
-                std::cout << WildPokemon.GetName() << "a ete vaincu..." << std::endl;
+            else if (WildPokemon->GetHitPoint() == 0){
+                std::cout << WildPokemon->GetName() << "a ete vaincu..." << std::endl;
                 engine.changeState(std::make_unique<Exploration>()); 
             }
         }
