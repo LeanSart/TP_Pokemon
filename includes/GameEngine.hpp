@@ -14,7 +14,8 @@ private:
     PokemonParty party;
     PokemonAttack attack;
     bool running = true;
-    std::mt19937 randomgenerator;
+    std::random_device rd;
+    std::mt19937 randomgenerator{rd()};
 
 public :
     void run();

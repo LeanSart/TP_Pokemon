@@ -2,7 +2,7 @@
 #include <iostream>
 
 Pokemon::Pokemon(int id, const string& name, int generation, double hitPointMax, double hitPoint, double attack, double defense)
-    : id(id), name(name), generation(generation), hitPointMax(hitPointMax), hitPoint(hitPointMax), attack(attack), defense(defense) {}
+    : id(id), name(name), generation(generation), hitPointMax(hitPointMax), hitPoint(hitPoint), attack(attack), defense(defense) {}
 
 Pokemon::Pokemon(const Pokemon& anotherPokemon)
     : id(anotherPokemon.id), name(anotherPokemon.name), generation(anotherPokemon.generation), hitPointMax(anotherPokemon.hitPointMax), hitPoint(anotherPokemon.hitPoint), attack(anotherPokemon.attack), defense(anotherPokemon.defense) {}
@@ -42,22 +42,16 @@ double Pokemon::GetDefense(){
 
 
 void Pokemon::isattacking(Pokemon& Defender) const{
-    double diffLife = this->attack - Defender.GetDefense();
-    double HPdef = Defender.GetHitPoint();
-    if (diffLife > 0) {
-        if ((HPdef < diffLife) && (HPdef != 0)) {
-            Defender.SetHitPoint(0);
-            std::cout << Defender.GetName() << " Died..." << std::endl;
-        }
-        if (HPdef == 0) {
-            std::cout << Defender.GetName() << " Died..." << std::endl;
-        }
-        if ((HPdef >= diffLife) && (HPdef != 0)){
-            Defender.SetHitPoint(HPdef - diffLife);
-        }
+    double damage = this->attack - Defender.GetDefense();
+    if (damage <= 0) {
+        damage = 1;
     }
+    double HPdef = Defender.GetHitPoint();
+    if (HPdef <= damage) {
+        Defender.SetHitPoint(0);
+    } 
     else {
-        std::cout << "The attack of "<< this->name << " has been unsuccessful" << std::endl;
+        Defender.SetHitPoint(HPdef - damage);
     }
 }
 void Pokemon::DisplayInfo() const {

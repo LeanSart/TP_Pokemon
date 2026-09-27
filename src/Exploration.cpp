@@ -16,11 +16,11 @@ void Exploration::run(GameEngine& engine){
     int playerchoice = choice(1, 4);
     if (playerchoice == 1){
         int randint = engine.random();
-        if (randint <= 25){
-            engine.changeState(std::make_unique<WildEncounterState>()); //Meet a new pokemon
+        if (randint <= 30) {
+            engine.changeState(std::make_unique<BattleState>()); // Meet a new pokemon
         }
-        if (25 < randint <= 75){
-            engine.changeState(std::make_unique<BattleState>()); //Meet an opponant
+        else if (randint <= 85) {
+            engine.changeState(std::make_unique<WildEncounterState>()); // Meet an opponant
         }
         else {
             std::cout << "Il n'y a pas grand chose par ici..." << std::endl;

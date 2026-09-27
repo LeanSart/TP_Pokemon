@@ -7,7 +7,7 @@ int AbstractState::choice(int min, int max){
             if (choice >= min && choice <= max) {
                 return choice;
             } else {
-                std::cout << "Erreur : la valeur doit être comprise entre " << min << " et " << max << ".\n";
+                std::cout << "Erreur : la valeur doit etre comprise entre " << min << " et " << max << ".\n";
             }
         } else {
             std::cout << "Erreur : saisie invalide. Veuillez entrer un nombre.\n";

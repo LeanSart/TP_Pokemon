@@ -1,4 +1,5 @@
 #include "PokemonParty.hpp"
+#include <stdexcept>
 
 void PokemonParty::addPokemon(const Pokemon& pokemon){
     PokeSet.push_back(std::make_shared<Pokemon>(pokemon));
@@ -14,5 +15,5 @@ Pokemon PokemonParty::GetPokemon(const string& name){
             return Pokemon(*p);
         }
     }
-    return Pokemon(0, "Unnamed", 0, 0, 0, 0, 0);
+    throw std::invalid_argument("Pokemon introuvable");
 }

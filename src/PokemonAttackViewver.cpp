@@ -3,12 +3,12 @@
 #include "Exploration.hpp"
 
 void PokemonAttackViewver::run(GameEngine &engine){
-    std::cout << "Votre équipe : " << std::endl;
+    std::cout << "Votre equipe : " << std::endl;
     if (engine.getAttack().size() == 0) {
-        std::cout << " Votre equipe est vide" << std::endl;
+        std::cout << "Votre equipe est vide" << std::endl;
     } else {
         for (auto& p : engine.getAttack()) { 
-            std::cout << " - " << p->GetName() << " ( " << p->GetHitPoint() << " HP )"<< std::endl;
+            std::cout << " - " << p->GetName() << " (" << p->GetHitPoint() << " HP)"<< std::endl;
         }
     }
     std::cout << "\nQue voulez-vous faire ?" << std::endl;
@@ -25,7 +25,7 @@ void PokemonAttackViewver::run(GameEngine &engine){
         std::cout << "3. Voir l'ensemble de mes pokemons" << std::endl; 
         std::cout << "4. Annuler" << std::endl;
         
-        int modifChoice = choice(1, 3);
+        int modifChoice = choice(1, 4);
         std::string pokeName;
         
         if (modifChoice == 1) {
@@ -39,7 +39,7 @@ void PokemonAttackViewver::run(GameEngine &engine){
                     Pokemon p = engine.getParty().GetPokemon(pokeName);
                     engine.getAttack().addPokemon(p);
                     std::cout << p.GetName() << " a bien ete ajoute a l'equipe de combat !" << std::endl;
-                } catch (...) {
+                } catch (const std::exception& e) {
                     std::cout << "Erreur : Pokemon introuvable dans votre collection." << std::endl;
                 }
             }
@@ -55,15 +55,18 @@ void PokemonAttackViewver::run(GameEngine &engine){
                     Pokemon p = engine.getAttack().GetPokemon(pokeName);
                     engine.getAttack().removePokemon(p);
                     std::cout << p.GetName() << " a ete retire de l'equipe de combat !" << std::endl;
-                } catch (...) {
+                } catch (const std::exception& e) {
                     std::cout << "Erreur : Ce Pokemon n'est pas dans votre equipe actuelle." << std::endl;
                 }
             }
         } 
         else if (modifChoice == 3 ) {
-            for (auto& p : engine.getAttack()) { 
-                std::cout << " - " << p->GetName() << " ( " << p->GetHitPoint() << " HP )"<< std::endl;
+            for (auto& p : engine.getParty()) { 
+                std::cout << " - " << p->GetName() << " (" << p->GetHitPoint() << " HP)"<< std::endl;
             }
+        }
+        else {
+            engine.changeState(std::make_unique<Exploration>());
         }
     }
 }
