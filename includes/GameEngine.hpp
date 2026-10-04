@@ -1,6 +1,7 @@
 #pragma once
 #include <random>
 #include <memory>
+#include <SFML/Graphics.hpp>
 #include "AbstractState.hpp"
 #include "PokemonParty.hpp"
 #include "PokemonAttack.hpp"
@@ -16,6 +17,8 @@ private:
     bool running = true;
     std::random_device rd;
     std::mt19937 randomgenerator{rd()};
+    sf::RenderWindow window;
+    sf::Font font;
 
 public :
     void run();
@@ -24,4 +27,6 @@ public :
     int random();
     PokemonParty& getParty();
     PokemonAttack& getAttack();
+    sf::RenderWindow& getWindow();
+    sf::Font& getFont();
 };

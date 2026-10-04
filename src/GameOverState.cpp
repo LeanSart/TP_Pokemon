@@ -1,15 +1,28 @@
 #include "GameOverState.hpp"
-#include <string>
 #include "GameEngine.hpp"
+#include "Theme.hpp"
+#include "UIHelpers.hpp"
+#include <iostream>
 
-void GameOverState::run(GameEngine& engine){
-    std::cout << "================================" << std::endl;
-    std::cout << "        G A M E   O V E R       " << std::endl;
-    std::cout << "================================" << std::endl;
-    std::cout << "Appuyez sur <ENTREE> pour sortir du jeu..." << std::endl;
+GameOverState::GameOverState(GameEngine& engine)
+    : quitButton("Quitter", engine.getFont(), {362.f, 620.f}, {300.f, 60.f})
+{
+    if (!backgroundTexture.loadFromFile("data/GameOverBG.png")) {
+        std::cout << "Erreur : Impossible de charger data/GameOverBG.png" << std::endl;
+    }
+    backgroundSprite.setTexture(backgroundTexture);
+}
 
-    std::string dummy;
-    std::getline(std::cin, dummy);
+void GameOverState::handleEvent(const sf::Event& event, GameEngine& engine) {
+    sf::Vector2f mousePos(sf::Mouse::getPosition(engine.getWindow()));
+    if (quitButton.isClicked(event, mousePos)) {
+        engine.quit();
+    }
+}
 
-    engine.quit();
+void GameOverState::render(sf::RenderWindow& window) {
+    sf::Vector2f mousePos(sf::Mouse::getPosition(window));
+    window.draw(backgroundSprite);
+    quitButton.update(mousePos);
+    quitButton.draw(window);
 }
