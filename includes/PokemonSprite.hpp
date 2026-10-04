@@ -2,11 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 /*
-Image d'un pokemon affichee pendant un combat. Charge data/pokemon/<id>.png,
-la redimensionne pour qu'elle tienne dans une boite de taille donnee et la
-pose "pieds au sol" sur un point (le centre d'une plateforme du decor).
-Les sprites ont beaucoup de marge transparente : la mise a l'echelle et le
-centrage se font donc sur la partie visible de l'image.
+Image d'un pokemon affichee. Charge data/pokemon/<id>.png,
 */
 class PokemonSprite {
     private:

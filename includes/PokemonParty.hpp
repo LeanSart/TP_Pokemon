@@ -7,7 +7,7 @@ Liste de l'ensemble des pokemon possédé par le joueur. Il ne peut pas en avoir
 */
 class PokemonParty : public PokemonVector {
     public :
-        void addPokemon(const Pokemon& pokemon);
+        void addPokemon(std::shared_ptr<Pokemon> pokemon);
         Pokemon GetPokemon(int indice) override;
         Pokemon GetPokemon(const string& name) override;
 };

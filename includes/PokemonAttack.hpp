@@ -9,8 +9,8 @@ Liste de l'ensemble des pokemon utilisable lors d'un combat. Il y en a un maximu
 
 class PokemonAttack : public PokemonVector {
     public :
-    void addPokemon(const Pokemon& pokemon);
-    void removePokemon(const Pokemon& pokemon);
+    void addPokemon(std::shared_ptr<Pokemon> pokemon);
+    void removePokemon(std::shared_ptr<Pokemon> pokemon);
     Pokemon GetPokemon(int indice) override;
     Pokemon GetPokemon(const string& Name) override;
 };

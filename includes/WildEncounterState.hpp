@@ -8,7 +8,9 @@
 #include <string>
 
 class GameEngine;
-
+/*
+Etat de bataille contre un pokemon aléatoire. Il est possible de le récuperer dans son pokedex
+*/
 class WildEncounterState : public AbstractState {
     private:
         enum class Phase { Intro, Fighting, ChooseNextFighter, Victory, CaptureResult };

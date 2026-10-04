@@ -35,13 +35,13 @@ void TitleScreen::refreshMessage(GameEngine& engine) {
 }
 
 TitleScreen::TitleScreen(GameEngine& engine)
-    : starter1(Pokedex::getPokedex().GetPokemon("Bulbasaur")),
-      starter2(Pokedex::getPokedex().GetPokemon("Charmander")),
-      starter3(Pokedex::getPokedex().GetPokemon("Squirtle")),
+    : starter1(std::make_shared<Pokemon>(Pokedex::getPokedex().GetPokemon("Bulbasaur"))),
+      starter2(std::make_shared<Pokemon>(Pokedex::getPokedex().GetPokemon("Charmander"))),
+      starter3(std::make_shared<Pokemon>(Pokedex::getPokedex().GetPokemon("Squirtle"))),
       startButton("Commencer l'aventure", engine.getFont(), {362.f, 560.f}, {300.f, 60.f}),
-    starter1Button(starter1.GetName(), engine.getFont(), {50.f, 660.f}, {260.f, 70.f}),
-    starter2Button(starter2.GetName(), engine.getFont(), {390.f, 660.f}, {260.f, 70.f}),
-    starter3Button(starter3.GetName(), engine.getFont(), {730.f, 660.f}, {260.f, 70.f}),
+    starter1Button(starter1->GetName(), engine.getFont(), {50.f, 660.f}, {260.f, 70.f}),
+    starter2Button(starter2->GetName(), engine.getFont(), {390.f, 660.f}, {260.f, 70.f}),
+    starter3Button(starter3->GetName(), engine.getFont(), {730.f, 660.f}, {260.f, 70.f}),
     confirmButton("Confirmer ce choix", engine.getFont(), {362.f, 380.f}, {300.f, 60.f})
 {
     if (!backgroundTexture1.loadFromFile("data/TitleScreen.jpg")) {
@@ -58,13 +58,13 @@ TitleScreen::TitleScreen(GameEngine& engine)
     backgroundSprite3.setTexture(backgroundTexture3);
 
     sf::Vector2f spriteSize(150.f, 150.f);
-    starterSprite1.load(starter1.GetID(), {180.f, 630.f}, BattleLayout::PlayerSpriteSize, false);
-    starterSprite2.load(starter2.GetID(), {530.f, 630.f}, BattleLayout::PlayerSpriteSize, false);
-    starterSprite3.load(starter3.GetID(), {850.f, 630.f}, BattleLayout::PlayerSpriteSize, false);
+    starterSprite1.load(starter1->GetID(), {180.f, 630.f}, BattleLayout::PlayerSpriteSize, false);
+    starterSprite2.load(starter2->GetID(), {530.f, 630.f}, BattleLayout::PlayerSpriteSize, false);
+    starterSprite3.load(starter3->GetID(), {850.f, 630.f}, BattleLayout::PlayerSpriteSize, false);
 
-    stat1Text = UI::makeText(DisplayStats(starter1), engine.getFont(), Theme::TextSize, Theme::TextSecondary);
-    stat2Text = UI::makeText(DisplayStats(starter2), engine.getFont(), Theme::TextSize, Theme::TextSecondary);
-    stat3Text = UI::makeText(DisplayStats(starter3), engine.getFont(), Theme::TextSize, Theme::TextSecondary);
+    stat1Text = UI::makeText(DisplayStats(*starter1), engine.getFont(), Theme::TextSize, Theme::TextSecondary);
+    stat2Text = UI::makeText(DisplayStats(*starter2), engine.getFont(), Theme::TextSize, Theme::TextSecondary);
+    stat3Text = UI::makeText(DisplayStats(*starter3), engine.getFont(), Theme::TextSize, Theme::TextSecondary);
     stat1Text.setPosition(90.f, 260.f);
     stat2Text.setPosition(420.f, 260.f);
     stat3Text.setPosition(770.f, 260.f);
@@ -84,22 +84,22 @@ void TitleScreen::handleEvent(const sf::Event& event, GameEngine& engine) {
 
     if (phase == Phase::ChooseStarter) {
         if (starter1Button.isClicked(event, mousePos)) {
-            chosenStarter = &starter1;
+            chosenStarter = starter1;
         }
         else if (starter2Button.isClicked(event, mousePos)) {
-            chosenStarter = &starter2;
+            chosenStarter = starter2;
         }
         else if (starter3Button.isClicked(event, mousePos)) {
-            chosenStarter = &starter3;
+            chosenStarter = starter3;
         }
 
-        starter1Button.setSelected(chosenStarter == &starter1);
-        starter2Button.setSelected(chosenStarter == &starter2);
-        starter3Button.setSelected(chosenStarter == &starter3);
+        starter1Button.setSelected(chosenStarter == starter1);
+        starter2Button.setSelected(chosenStarter == starter2);
+        starter3Button.setSelected(chosenStarter == starter3);
 
         if (chosenStarter != nullptr && confirmButton.isClicked(event, mousePos)) {
-            engine.getParty().addPokemon(*chosenStarter);
-            engine.getAttack().addPokemon(*chosenStarter);
+            engine.getParty().addPokemon(chosenStarter);
+            engine.getAttack().addPokemon(chosenStarter);
             confirmButton.setText("Commencer l'exploration !");
             phase = Phase::Confirmation;
             refreshMessage(engine);

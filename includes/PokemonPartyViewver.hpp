@@ -6,7 +6,9 @@
 #include <vector>
 
 class GameEngine;
-
+/*
+Etat de visualisation  de son pokedex
+*/
 class PokemonPartyViewver : public AbstractState{
     private:
         std::vector<std::shared_ptr<Pokemon>> entries;

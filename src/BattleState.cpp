@@ -62,8 +62,6 @@ void BattleState::refreshInfoBoxes() {
     }
 }
 
-// Charge l'image de notre pokemon sur sa plateforme (a appeler a chaque changement de combattant).
-// Il regarde vers la droite, c'est-a-dire vers l'adversaire (image retournee).
 void BattleState::refreshFighterSprite() {
     if (fighter) {
         fighterSprite.load(fighter->GetID(), BattleLayout::PlayerFeet, BattleLayout::PlayerSpriteSize, true);
@@ -178,7 +176,7 @@ void BattleState::render(sf::RenderWindow& window) {
     window.draw(backgroundSprite);
     window.draw(titleText);
 
-    // Les pokemons sur leurs plateformes (un pokemon K.O. disparait).
+
     if (opponent->GetHitPoint() > 0) {
         opponentSprite.draw(window);
     }

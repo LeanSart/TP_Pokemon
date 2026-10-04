@@ -102,7 +102,7 @@ void PokemonAttackViewver::handleEvent(const sf::Event& event, GameEngine& engin
     for (size_t i = 0; i < attackButtons.size(); ++i) {
         if (attackButtons[i].isClicked(event, mousePos)) {
             setMessage(attackEntries[i]->GetName() + " a ete retire de l'equipe !");
-            engine.getAttack().removePokemon(*attackEntries[i]);
+            engine.getAttack().removePokemon(attackEntries[i]);
             rebuildLists(engine);
             return;
         }
@@ -114,7 +114,7 @@ void PokemonAttackViewver::handleEvent(const sf::Event& event, GameEngine& engin
                 setMessage("Equipe deja complete (6 pokemons maximum) !");
             } else {
                 setMessage(availableEntries[i]->GetName() + " a rejoint l'equipe !");
-                engine.getAttack().addPokemon(*availableEntries[i]);
+                engine.getAttack().addPokemon(availableEntries[i]);
                 rebuildLists(engine);
             }
             return;

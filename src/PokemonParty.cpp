@@ -1,8 +1,8 @@
 #include "PokemonParty.hpp"
 #include <stdexcept>
 
-void PokemonParty::addPokemon(const Pokemon& pokemon){
-    PokeSet.push_back(std::make_shared<Pokemon>(pokemon));
+void PokemonParty::addPokemon(std::shared_ptr<Pokemon> pokemon){
+    PokeSet.push_back(pokemon);
 }
 
 Pokemon PokemonParty::GetPokemon(int indice){

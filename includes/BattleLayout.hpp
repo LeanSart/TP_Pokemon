@@ -3,20 +3,9 @@
 
 /*
 Disposition commune aux ecrans de combat (BattleState et WildEncounterState).
-Les coordonnees sont calees sur l'image data/BGbattle.png (1024x768), qui contient
+Les coordonnees sont calees sur l'image data/BGbattle.png, qui contient
 deja deux plateformes : une en haut a droite pour l'adversaire, une en bas a gauche
 pour notre pokemon. Le bas de l'ecran (herbe unie) accueille le texte et les boutons.
-
-     +--------------------------------------------+
-     | [cartouche adversaire]   Titre             |
-     |                              (adversaire)  |
-     |                               plateforme   |
-     |   (notre pokemon)                          |
-     |    plateforme                [cartouche]   |
-     | [ zone de texte ]            [ bouton 0 ]  |
-     | [               ]            [ bouton 1 ]  |
-     | [               ]            [ bouton 2 ]  |
-     +--------------------------------------------+
 */
 namespace BattleLayout {
     // Point ou les pokemons posent leurs pattes (milieu de chaque plateforme du decor).

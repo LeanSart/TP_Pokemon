@@ -3,7 +3,9 @@
 #include "Button.hpp"
 
 class GameEngine;
-
+/*
+Exploration : Etat d'exploration du jeu
+*/
 class Exploration : public AbstractState {
     private:
         Button walkButton;

@@ -144,7 +144,7 @@ void WildEncounterState::handleEvent(const sf::Event& event, GameEngine& engine)
         else if (pokeballButton.isClicked(event, mousePos)) {
             int randint = engine.random();
             if (randint <= 85) {
-                engine.getParty().addPokemon(*wildPokemon);
+                engine.getParty().addPokemon(wildPokemon);
                 captured = true;
                 setLog(wildPokemon->GetName() + " a ete capture !");
             } else {

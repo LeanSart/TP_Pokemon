@@ -4,10 +4,7 @@
 #include "Theme.hpp"
 
 /*
-Bouton cliquable reutilisable : un rectangle avec un texte centre, un
-effet de survol (hover) et un etat "selectionne" optionnel (utilise par
-exemple pour le choix du starter). Utilise par tous les ecrans du jeu
-pour construire leurs menus.
+Bouton cliquable réutilisé dans tous les écrans du jeu
 */
 class Button {
     private:

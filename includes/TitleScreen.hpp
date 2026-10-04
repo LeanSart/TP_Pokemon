@@ -16,10 +16,10 @@ class TitleScreen : public AbstractState{
         enum class Phase { Welcome, ChooseStarter, Confirmation };
         Phase phase = Phase::Welcome;
 
-        Pokemon starter1;
-        Pokemon starter2;
-        Pokemon starter3;
-        Pokemon* chosenStarter = nullptr;
+        std::shared_ptr<Pokemon> starter1;
+        std::shared_ptr<Pokemon> starter2;
+        std::shared_ptr<Pokemon> starter3;
+        std::shared_ptr<Pokemon> chosenStarter = nullptr;
 
         PokemonSprite starterSprite1;
         PokemonSprite starterSprite2;

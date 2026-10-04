@@ -4,9 +4,7 @@
 
 /*
 Cartouche d'information d'un pokemon en combat : un panneau semi-transparent
-contenant son nom, sa barre de vie et ses PV (ex. "45/78 PV"). Un nom trop long
-est reduit pour rester dans le panneau. Peut aussi afficher un simple message
-(sans barre de vie) quand il n'y a pas de pokemon a montrer.
+contenant son nom, sa barre de vie et ses PV.
 */
 class PokemonInfoBox {
     private:
