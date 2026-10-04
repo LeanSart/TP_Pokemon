@@ -12,8 +12,13 @@ void GameEngine::run(){
     }
     std::random_device rd;
     std::mt19937 gen(rd());
-    currentState = std::make_unique<TitleScreen>(*this);
-
+    try {
+        currentState = std::make_unique<TitleScreen>(*this);
+    } catch (const std::exception& e) {
+    std::cerr << "Erreur fatale au demarrage : " << e.what() << std::endl;
+    window.close();
+    return;
+    }
     while (running && currentState && window.isOpen()){
         sf::Event event{};
         while (window.pollEvent(event)){

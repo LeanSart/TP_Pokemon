@@ -13,7 +13,7 @@ Pokemon Pokedex::GetPokemon(const string& name) {
             return Pokemon(*p);
         }
     }
-    return Pokemon(0, "Unnamed", 0 ,0 ,0 ,0 ,0);
+    throw std::invalid_argument("Pokemon introuvable dans le Pokedex : " + name);
 }
 
 void Pokedex::SetPokedex(const std::string& filename){
